@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const PizzaBlock = ({ price, title }) => {
+  const [counterPizza, setCounterPizza] = useState(0);
+
+  const onClickAdd = () => {
+    setCounterPizza(counterPizza + 10);
+  };
   return (
     <div className='pizza-block'>
       <img
@@ -11,18 +16,21 @@ const PizzaBlock = ({ price, title }) => {
       <h4 className='pizza-block__title'>{title}</h4>
       <div className='pizza-block__selector'>
         <ul>
-          <li className='active'>тонкое</li>
-          <li>традиционное</li>
+          <li className='active'>standart</li>
+          <li>slim</li>
         </ul>
         <ul>
-          <li className='active'>26 см.</li>
-          <li>30 см.</li>
-          <li>40 см.</li>
+          <li className='active'>26 cm.</li>
+          <li>30 cm.</li>
+          <li>40 cm.</li>
         </ul>
       </div>
       <div className='pizza-block__bottom'>
-        <div className='pizza-block__price'>от {price} $</div>
-        <button className='button button--outline button--add'>
+        <div className='pizza-block__price'>from {price} $</div>
+        <button
+          onClick={onClickAdd}
+          className='button button--outline button--add'
+        >
           <svg
             width='12'
             height='12'
@@ -35,8 +43,8 @@ const PizzaBlock = ({ price, title }) => {
               fill='white'
             />
           </svg>
-          <span>Добавить</span>
-          <i>2</i>
+          <span>Add</span>
+          <i>{counterPizza}</i>
         </button>
       </div>
     </div>

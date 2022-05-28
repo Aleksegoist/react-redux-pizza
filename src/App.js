@@ -14,10 +14,10 @@ function App() {
             <Categories />
             <Sort />
           </div>
-          <h2 className='content__title'>Все пиццы</h2>
+          <h2 className='content__title'>All pizzas</h2>
           <div className='content__items'>
-            <PizzaBlock title='Какиш+' price='100' />
-            <PizzaBlock title='Какульная' price='50' />
+            <PizzaBlock title='Pickle+' price='100' />
+            <PizzaBlock title='Pickle' price='50' />
           </div>
         </div>
       </div>
