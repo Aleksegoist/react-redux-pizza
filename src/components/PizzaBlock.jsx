@@ -4,7 +4,7 @@ const PizzaBlock = ({ price, title }) => {
   const [counterPizza, setCounterPizza] = useState(0);
 
   const onClickAdd = () => {
-    setCounterPizza(counterPizza + 10);
+    setCounterPizza(counterPizza + 1);
   };
   return (
     <div className='pizza-block'>
