@@ -1,36 +1,47 @@
 import React, { useState } from 'react';
 
-const PizzaBlock = ({ price, title }) => {
-  const [counterPizza, setCounterPizza] = useState(0);
+const PizzaBlock = ({ price, name, imageUrl, sizes, types }) => {
+  const typeNames = ['slim', 'standart'];
 
-  const onClickAdd = () => {
-    setCounterPizza(counterPizza + 1);
+  const [typePizza, setTypePizza] = useState(0);
+  const [sizePizza, setSizePizza] = useState(0);
+
+  const onClickType = (type) => {
+    setTypePizza(type);
+  };
+
+  const onClickSize = (type) => {
+    setSizePizza(type);
   };
   return (
     <div className='pizza-block'>
-      <img
-        className='pizza-block__image'
-        src='https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg'
-        alt='Pizza'
-      />
-      <h4 className='pizza-block__title'>{title}</h4>
+      <img className='pizza-block__image' src={imageUrl} alt='Pizza' />
+      <h4 className='pizza-block__title'>{name}</h4>
       <div className='pizza-block__selector'>
         <ul>
-          <li className='active'>standart</li>
-          <li>slim</li>
+          {types.map((typeIndex) => (
+            <li
+              onClick={() => onClickType(typeIndex)}
+              className={typePizza === typeIndex ? 'active' : ''}
+            >
+              {typeNames[typeIndex]}
+            </li>
+          ))}
         </ul>
         <ul>
-          <li className='active'>26 cm.</li>
-          <li>30 cm.</li>
-          <li>40 cm.</li>
+          {sizes.map((size, index) => (
+            <li
+              onClick={() => onClickSize(index)}
+              className={sizePizza === index ? 'active' : ''}
+            >
+              {size} sm.
+            </li>
+          ))}
         </ul>
       </div>
       <div className='pizza-block__bottom'>
         <div className='pizza-block__price'>from {price} $</div>
-        <button
-          onClick={onClickAdd}
-          className='button button--outline button--add'
-        >
+        <button className='button button--outline button--add'>
           <svg
             width='12'
             height='12'
@@ -44,7 +55,7 @@ const PizzaBlock = ({ price, title }) => {
             />
           </svg>
           <span>Add</span>
-          <i>{counterPizza}</i>
+          <i>0</i>
         </button>
       </div>
     </div>

@@ -12,10 +12,10 @@ const Categories = () => {
   return (
     <div className='categories'>
       <ul>
-        {category.map((value, index) => (
+        {category.map((value, i) => (
           <li
-            onClick={() => onClickCategory(index)}
-            className={indexCategory === index ? 'active' : ''}
+            onClick={() => onClickCategory(i)}
+            className={indexCategory === i ? 'active' : ''}
           >
             {value}
           </li>
