@@ -36,7 +36,7 @@ const PizzaBlock = ({ price, name, imageUrl, sizes, types }) => {
           </ul>
         </div>
         <div className='pizza-block__bottom'>
-          <div className='pizza-block__price'>from {price} $</div>
+          <div className='pizza-block__price'>from {price} ₴</div>
           <button className='button button--outline button--add'>
             <svg
               width='12'
