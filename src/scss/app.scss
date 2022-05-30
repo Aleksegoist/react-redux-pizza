@@ -59,7 +59,7 @@ body {
     @media (max-width: 1260px) {
       .categories {
         width: 100%;
-        overflow: scroll;
+        overflow: auto;
         ul {
           width: 785px;
         }
@@ -159,6 +159,10 @@ body {
         color: darken($color: #b6b6b6, $amount: 50);
       }
     }
+  }
+
+  .content__items {
+    display: block;
   }
 
   &__item {
