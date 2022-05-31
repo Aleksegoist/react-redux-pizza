@@ -4,7 +4,7 @@ import PizzaBlock from '../components/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 import Sort from '../components/Sort';
 
-const Home = () => {
+const Home = ({ searchInput }) => {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -32,6 +32,15 @@ const Home = () => {
     window.scrollTo(0, 0);
   }, [categoryId, sortType]);
 
+  const pizzas = items
+    .filter((obj) => {
+      if (obj.name.toLowerCase().includes(searchInput.toLowerCase())) {
+        return true;
+      }
+    })
+    .map((obj) => <PizzaBlock key={obj.id} {...obj} />);
+  const skeletons = [...Array(6)].map((_, index) => <Skeleton key={index} />);
+
   return (
     <div className='container'>
       <div className='content__top'>
@@ -42,11 +51,7 @@ const Home = () => {
         <Sort value={sortType} onChangeSort={(id) => setSortType(id)} />
       </div>
       <h2 className='content__title'>All pizzas</h2>
-      <div className='content__items'>
-        {isLoading
-          ? [...Array(6)].map((_, index) => <Skeleton key={index} />)
-          : items.map((obj) => <PizzaBlock key={obj.id} {...obj} />)}
-      </div>
+      <div className='content__items'>{isLoading ? skeletons : pizzas}</div>
     </div>
   );
 };

@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from './Search.module.scss';
 
-const Search = () => {
+const Search = ({ searchInput, setSearchInput }) => {
   return (
     <div className={styles.root}>
       <svg
         className={styles.icon}
-        enable-background='new 0 0 32 32'
+        enableBackground='new 0 0 32 32'
         height='32px'
         version='1.1'
         viewBox='0 0 32 32'
@@ -45,7 +45,22 @@ const Search = () => {
           <circle cx='22' cy='13' fill='#263238' r='0.5' />
         </g>
       </svg>
-      <input className={styles.input} placeholder='Search pizza...' />
+      <input
+        value={searchInput}
+        onChange={(event) => setSearchInput(event.target.value)}
+        className={styles.input}
+        placeholder='Search pizza...'
+      />
+      {searchInput && (
+        <svg
+          onClick={() => setSearchInput('')}
+          className={styles.clearIcon}
+          viewBox='0 0 20 20'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path d='M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z' />
+        </svg>
+      )}
     </div>
   );
 };
