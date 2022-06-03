@@ -10,8 +10,7 @@ import { setCategoryId } from '../redux/slices/filterSlice.js';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const categoryId = useSelector((state) => state.filter.categoryId);
-  const sortType = useSelector((state) => state.filter.sort.sortProperty);
+  const { categoryId, sort } = useSelector((state) => state.filter);
 
   const { searchInput } = useContext(SearchContext);
 
@@ -27,8 +26,8 @@ const Home = () => {
   useEffect(() => {
     setIsLoading(true);
 
-    const order = sortType.includes('-') ? 'asc' : 'desc';
-    const sortBy = sortType.replace('-', '');
+    const order = sort.sortProperty.includes('-') ? 'asc' : 'desc';
+    const sortBy = sort.sortProperty.replace('-', '');
     const category = categoryId > 0 ? `category=${categoryId}` : '';
     const search = searchInput ? `&search=${searchInput}` : '';
 
@@ -41,7 +40,7 @@ const Home = () => {
         setIsLoading(false);
       });
     window.scrollTo(0, 0);
-  }, [categoryId, sortType, searchInput, currentPage]);
+  }, [categoryId, sort.sortProperty, searchInput, currentPage]);
 
   const pizzas = items.map((obj) => <PizzaBlock key={obj.id} {...obj} />);
   const skeletons = [...Array(6)].map((_, index) => <Skeleton key={index} />);
